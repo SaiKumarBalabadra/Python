@@ -1,0 +1,37 @@
+Project - 1
+
+Git - store the application source code
+DockerHub/ECR - Store the Docker Image
+Helm - Template - create the kubernetes application i.e (Management of manifests/yaml files)
+Kubernetes - KOPs cluster or EKS (any kubernetes service)
+
+Steps
+1. Pull the source code from GIT 
+2. Containerise (From Dockerfile to Docker Image)
+3. Push the docker image to ECR / DockerHub private repo
+4. Now In Kubernetes cluster
+5. USe Helm - helm will create a template/folder 
+    "helm create my-app" (this will create a folder with some files in your home directory)
+    now in that folder there will be a file values.yaml.
+    edit that file with necessary values.
+    after editing the values. (i.e type of service, Deployment values, Ingress values, Private repo secrets etc)
+    Now "helm install my-app path/to/my-app-folder"
+    helm will create mentioned kubernetes objects in values.yaml file - in kubernetes cluster/EKS cluster
+    verify them in kubernetes/EKS - check "kubectl get all"
+
+Kubernetes Objects structure or path 
+
+Client/User - DNS endpoint(Route 53)(Optional) - ALB endpoint(AWS Loadbalancer) - Ingress Controller - Ingress - Service(Cluster IP) - Deployment/Pods
+
+i.e above mentioned k8's objects need to be created in EKS cluster
+helm install will create all these for you in single go.
+
+self learn - prerequisite knowledge
+how to pull private image from ECR/DockerHub - in to k8's Deployment/Pods
+Optional Ingress Controller and Ingress concept
+or else direct approach (User - AWS LB - Service(LB) - Deployment)
+Basic understanding of helm - what helm will do
+Basic kubectl commands to navigate cluster
+knowledge on - How to deploy application on EKS/Kubernetes - How to access the deployed application
+
+Do it manually - and try to access your application once deployed on EKS/k8's
